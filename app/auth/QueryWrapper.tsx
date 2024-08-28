@@ -9,7 +9,7 @@ interface Props {
 }
 const queryClient = new QueryClient();
 
-const QueryWrapper = ({ children }) => (
+const QueryWrapper = ({ children }: Props) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
