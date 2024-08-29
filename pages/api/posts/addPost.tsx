@@ -13,6 +13,7 @@ export default async function handler(
       return res.status(401).json({ message: "Please sign in to make a post" });
 
     const title: string = req.body.title;
+    console.log(title);
 
     //Get User
     const prismaUser = await prisma.user.findUnique({
@@ -22,10 +23,12 @@ export default async function handler(
     });
 
     //Check title
-    if (title.length > 300)
+    if (title.length > 300) {
       return res.status(403).json({ message: "Please write a shorter post" });
-    if (title.length)
+    }
+    if (!title.length) {
       return res.status(403).json({ message: "Please don't leave this empty" });
+    }
 
     //Create a post
     try {
