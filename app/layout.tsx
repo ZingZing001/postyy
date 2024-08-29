@@ -2,6 +2,7 @@ import "./globals.css";
 import Nav from "./auth/Nav";
 import { Roboto } from "next/font/google";
 import QueryWrapper from "./auth/QueryWrapper";
+
 const roboto = Roboto({
   weight: ["400", "700"],
   style: ["normal", "italic"],

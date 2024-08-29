@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 
 export default function CreatePost() {
   const [title, setTitle] = useState("");
@@ -12,12 +13,15 @@ export default function CreatePost() {
   const { mutate } = useMutation({
     mutationFn: (title: string) => axios.post("/api/posts/addPost", { title }),
     onSuccess: (data) => {
-      console.log("Post created successfully: ", data);
+      toast.success("Post created successfully 🎉");
       setTitle("");
       setIsDisabled(false);
     },
     onError: (error) => {
-      console.log("Error creating post: ", error);
+      if (error instanceof AxiosError) {
+        toast.error(error?.response?.data?.message);
+      }
+      setIsDisabled(false);
     },
   });
 
