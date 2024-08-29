@@ -8,8 +8,25 @@ export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
+  //Create a Post
+  const { mutate } = useMutation({
+    mutationFn: (title: string) => axios.post("/api/posts/addPost", { title }),
+    onSuccess: (data) => {
+      console.log("Post created successfully: ", data);
+    },
+    onError: (error) => {
+      console.log("Error creating post: ", error);
+    },
+  });
+
+  const submitPost = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsDisabled(true);
+    mutate(title);
+  };
+
   return (
-    <form className="bg-white my-8 p-8 rounded-md">
+    <form onSubmit={submitPost} className="bg-white my-8 p-8 rounded-md">
       <div className="flex flex-col my-4">
         <textarea
           onChange={(e) => setTitle(e.target.value)}

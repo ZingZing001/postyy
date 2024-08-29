@@ -11,6 +11,6 @@ export default async function handler(
     if (!session)
       return res.status(401).json({ message: "Please sign in to make a post" });
 
-    console.log(req.body);
+    const title: string = req.body.title;
   }
 }
