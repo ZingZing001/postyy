@@ -13,6 +13,8 @@ export default function CreatePost() {
     mutationFn: (title: string) => axios.post("/api/posts/addPost", { title }),
     onSuccess: (data) => {
       console.log("Post created successfully: ", data);
+      setTitle("");
+      setIsDisabled(false);
     },
     onError: (error) => {
       console.log("Error creating post: ", error);
