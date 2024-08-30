@@ -21,14 +21,14 @@ export default function MyPosts() {
   return (
     <div>
       <h1>Data</h1>
-      {data?.posts?.map((post) => (
+      {data?.Post?.map((post) => (
         <EditPost
           key={post.id}
           id={post.id}
           avartar={data.image}
           name={data.name}
           title={post.title}
-          comments={post.comments}
+          comments={post.Comment}
         />
       ))}
     </div>

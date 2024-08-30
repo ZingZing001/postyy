@@ -3,11 +3,11 @@ export type AuthPosts = {
   id: string,
   image: string,
   name: string,
-  posts: {
+  Post: {
     createdAt: string,
     id: string,
     title: string,
-    comments?: {
+    Comment?: {
       createdAt: string,
       id: string,
       postId: string,
