@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+  const queryClient = useQueryClient();
   let toastPostID: string;
 
   //Create a Post
@@ -15,6 +16,7 @@ export default function CreatePost() {
     mutationFn: (title: string) => axios.post("/api/posts/addPost", { title }),
     onSuccess: (data) => {
       toast.success("Post created successfully 🎉", { id: toastPostID });
+      queryClient.invalidateQueries(["posts"]);
       setTitle("");
       setIsDisabled(false);
     },
