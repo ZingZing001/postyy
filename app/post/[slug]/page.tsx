@@ -1,5 +1,6 @@
 "use client";
 
+import AddComment from "@/app/components/AddComment";
 import Post from "@/app/components/Post";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -31,6 +32,7 @@ export default function PostDetail(url: URL) {
         postTitle={data.title}
         comments={data.Comment}
       />
+      <AddComment />
     </div>
   );
 }
